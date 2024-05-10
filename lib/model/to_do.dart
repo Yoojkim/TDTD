@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
-
 class Todo {
   int? id;
+
   bool success;
   String content;
   DateTime date;
   bool isDeleted;
 
   Todo(
-      {required this.id,
+      {this.id,
       required this.success,
       required this.content,
       required this.date,
@@ -22,6 +21,10 @@ class Todo {
       'date': getDateStr(date),
       'isDeleted': changeBoolToInt(isDeleted),
     };
+  }
+
+  void changeSuccess() {
+    success = !success;
   }
 
   static Todo createTodoByMap(Map<String, dynamic> map) {
@@ -42,6 +45,7 @@ class Todo {
     return true;
   }
 
+  /// true -> 1 false -> 0
   static int changeBoolToInt(bool value) {
     if (value) {
       return 1;
@@ -50,6 +54,7 @@ class Todo {
     return 0;
   }
 
+  /// 년.월.일
   static String getDateStr(DateTime dateTime) {
     return '${dateTime.year}.${dateTime.month}.${dateTime.day}';
   }
