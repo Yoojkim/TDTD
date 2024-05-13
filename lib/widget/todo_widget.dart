@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist/const/color.dart';
 import 'package:todolist/database/database.dart';
 import 'package:todolist/model/to_do.dart';
 import 'package:todolist/state/standard_date_provider.dart';
@@ -84,15 +85,25 @@ class _ToDoListState extends State<ToDoList> {
                                             contentPadding:
                                                 EdgeInsets.all(20.0),
                                             labelText: 'To do',
+                                            labelStyle:
+                                                TextStyle(color: Colors.black),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: lightGreen,
+                                              ),
+                                            ),
                                           ),
                                           controller: textEditingController,
                                         ),
                                       ),
                                     ),
-
-                                    //todo: 아무 것도 입력되지 않을 때에는 활성화 되지 않도록
                                     ElevatedButton(
                                       onPressed: () async {
+                                        if (textEditingController
+                                            .text.isEmpty) {
+                                          return;
+                                        }
+
                                         await dataBase!.insert(Todo(
                                             success: false,
                                             content: textEditingController.text,
@@ -105,6 +116,10 @@ class _ToDoListState extends State<ToDoList> {
                                         setState(() {});
                                       },
                                       child: Text('등록하기'),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: lightGreen,
+                                        foregroundColor: Colors.black,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -163,6 +178,14 @@ class _ToDoListState extends State<ToDoList> {
                                                 contentPadding:
                                                     EdgeInsets.all(20.0),
                                                 labelText: 'To do',
+                                                labelStyle: TextStyle(
+                                                    color: Colors.black),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: lightGreen,
+                                                  ),
+                                                ),
                                               ),
                                               controller: textEditingController,
                                             ),
@@ -172,6 +195,11 @@ class _ToDoListState extends State<ToDoList> {
                                         //todo: 아무 것도 입력되지 않을 때에는 활성화 되지 않도록
                                         ElevatedButton(
                                           onPressed: () async {
+                                            if (textEditingController
+                                                .text.isEmpty) {
+                                              return;
+                                            }
+
                                             await dataBase!.insert(Todo(
                                                 success: false,
                                                 content:
@@ -185,6 +213,10 @@ class _ToDoListState extends State<ToDoList> {
                                             setState(() {});
                                           },
                                           child: Text('등록하기'),
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: lightGreen,
+                                            foregroundColor: Colors.black,
+                                          ),
                                         )
                                       ],
                                     ),
