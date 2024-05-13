@@ -15,6 +15,10 @@ class _PerToDoState extends State<PerToDo> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(
+        left: 10,
+        right: 10,
+      ),
       child: Row(
         children: [
           GestureDetector(
