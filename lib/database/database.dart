@@ -6,7 +6,7 @@ class DataBase {
   late Database _database;
   String tableName = 'todo';
 
-  Future<Database?> get database async {
+  Future<Database> get database async {
     _database = await initDB();
 
     return _database;
@@ -14,6 +14,7 @@ class DataBase {
 
   initDB() async {
     String path = join(await getDatabasesPath(), '$tableName.db');
+    print(path);
 
     return await openDatabase(
       path,
@@ -33,7 +34,7 @@ class DataBase {
   Future<List<Todo>> getAllTodos() async {
     final db = await database;
 
-    final List<Map<String, dynamic>> maps = await db!.query(tableName);
+    final List<Map<String, dynamic>> maps = await db.query(tableName);
 
     return List.generate(
         maps.length, (index) => Todo.createTodoByMap(maps[index]));
@@ -43,8 +44,8 @@ class DataBase {
     String strDate = Todo.getDateStr(date);
 
     final db = await database;
-    final List<Map<String, dynamic>> maps = await db!.rawQuery(
-      'SELECT * FROM $tableName WHERE date = "$strDate"',
+    final List<Map<String, dynamic>> maps = await db.rawQuery(
+      'SELECT * FROM $tableName WHERE date = "$strDate" AND isDeleted = 0 ORDER BY success ASC',
     );
 
     if (maps.isEmpty) return [];
@@ -56,6 +57,15 @@ class DataBase {
 
   insert(Todo todo) async {
     final db = await database;
-    await db?.insert(tableName, todo.toMap());
+
+    await db.insert(tableName, todo.toMap());
+  }
+
+  updateSuccess(Todo todo) async {
+    final db = await database;
+    int newSuccess = Todo.changeBoolToInt(!todo.success);
+
+    await db.rawUpdate(
+        'UPDATE $tableName SET success = $newSuccess WHERE id = ${todo.id}');
   }
 }

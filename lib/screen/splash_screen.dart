@@ -1,20 +1,34 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:todolist/component/logo.dart';
+import 'package:todolist/const/color.dart';
+import 'package:todolist/screen/todo_screen.dart';
+
+//todo: 3초 뒤 Todo_Screen으로 이동
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    Timer(
+      Duration(seconds: 3),
+      () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => ToDoScreen()));
+      },
+    );
+
+    return const Scaffold(
       backgroundColor: Colors.white,
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Image.asset('asset/image/logo.png'),
-        const SizedBox(
+        Logo(width: 600, height: 600),
+        SizedBox(
           width: 200.0,
           child: LinearProgressIndicator(
             minHeight: 20.0,
             borderRadius: BorderRadius.all(Radius.circular(10)),
-            color: Color.fromRGBO(254, 204, 190, 100),
+            color: primartColor,
           ),
         ),
       ]),
