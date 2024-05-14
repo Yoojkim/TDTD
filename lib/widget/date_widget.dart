@@ -27,31 +27,39 @@ class _DateNavigatorState extends State<DateNavigator> {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              '${standardDate.year}년 ${standardDate.month}월 ${standardDate.day}일',
-              style: const TextStyle(
-                fontSize: 20.0,
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 15.0,
+              ),
+              child: Text(
+                '${standardDate.year}년 ${standardDate.month}월 ${standardDate.day}일',
+                style: const TextStyle(
+                  fontSize: 20.0,
+                ),
               ),
             ),
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    standardDateByProvider.changeDate(
-                        standardDate.subtract(const Duration(days: 7)));
-                  },
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-                IconButton(
-                  onPressed: () {
-                    standardDateByProvider
-                        .changeDate(standardDate.add(const Duration(days: 7)));
-                  },
-                  icon: const Icon(Icons.arrow_forward_ios),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(right: 5),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      standardDateByProvider.changeDate(
+                          standardDate.subtract(const Duration(days: 7)));
+                    },
+                    icon: const Icon(Icons.arrow_back_ios),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      standardDateByProvider.changeDate(
+                          standardDate.add(const Duration(days: 7)));
+                    },
+                    icon: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -93,7 +101,7 @@ class _DateNavigatorState extends State<DateNavigator> {
                   child: Text(
                     '${WeekDay.getWeekTextFromDateTime(e!)}',
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 13.0,
                     ),
                   ),
                 ),

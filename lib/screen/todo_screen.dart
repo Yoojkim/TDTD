@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/component/logo.dart';
+import 'package:todolist/state/standard_date_provider.dart';
 import 'package:todolist/widget/date_widget.dart';
 import 'package:todolist/widget/todo_widget.dart';
 
@@ -20,10 +22,23 @@ class _ToDoScreenState extends State<ToDoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    StandardDate standardDate = Provider.of<StandardDate>(context);
     return Scaffold(
       appBar: AppBar(
-        leading: const Logo(width: 30, height: 30),
-        title: const Text('To do!'),
+        leading: Container(),
+        title: const Logo(
+          width: 90,
+          height: 90,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              standardDate.changeDate(DateTime.now());
+              setState(() {});
+            },
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
       ),
       body: SafeArea(
           child: Column(
