@@ -41,7 +41,7 @@ Future<T?> showCreateTodoBottomShteet<T>({
                     labelStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: lightGreen,
+                        color: primartColor,
                       ),
                     ),
                   ),
@@ -62,7 +62,7 @@ Future<T?> showCreateTodoBottomShteet<T>({
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: lightGreen,
+                  backgroundColor: primartColor,
                   foregroundColor: Colors.black,
                 ),
                 child: const Text('등록하기'),

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:todolist/component/logo.dart';
 import 'package:todolist/const/color.dart';
-import 'package:todolist/screen/todo_screen.dart';
 
 //todo: 3초 뒤 Todo_Screen으로 이동
 class SplashScreen extends StatelessWidget {
@@ -14,8 +14,7 @@ class SplashScreen extends StatelessWidget {
     Timer(
       Duration(seconds: 3),
       () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ToDoScreen()));
+        context.go('/todo');
       },
     );
 
