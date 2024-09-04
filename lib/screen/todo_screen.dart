@@ -24,7 +24,9 @@ class _ToDoScreenState extends State<ToDoScreen> {
   Widget build(BuildContext context) {
     StandardDate standardDate = Provider.of<StandardDate>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: const Logo(
           width: 90,
           height: 90,
