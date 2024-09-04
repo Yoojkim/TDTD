@@ -17,7 +17,18 @@ Future<T?> showCreateTodoBottomShteet<T>({
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        child: SizedBox(
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(
+                20.0,
+              ),
+              topRight: Radius.circular(
+                20.0,
+              ),
+            ),
+          ),
           height: 300.0,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,7 +48,7 @@ Future<T?> showCreateTodoBottomShteet<T>({
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.all(20.0),
-                    labelText: 'To do',
+                    labelText: '계획을 입력해주세요!',
                     labelStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -64,6 +75,7 @@ Future<T?> showCreateTodoBottomShteet<T>({
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primartColor,
                   foregroundColor: Colors.black,
+                  shadowColor: Colors.transparent,
                 ),
                 child: const Text('등록하기'),
               ),

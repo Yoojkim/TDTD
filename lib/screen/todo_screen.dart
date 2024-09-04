@@ -24,11 +24,19 @@ class _ToDoScreenState extends State<ToDoScreen> {
   Widget build(BuildContext context) {
     StandardDate standardDate = Provider.of<StandardDate>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Container(),
-        title: const Logo(
+        backgroundColor: Colors.white,
+        leading: const Logo(
           width: 90,
           height: 90,
+        ),
+        title: const Text(
+          'ㅌㄷㅌㄷ',
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         actions: [
           IconButton(
@@ -51,7 +59,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
               5.0,
             ),
           ),
-          ToDoList(),
+          const ToDoList(),
         ],
       )),
     );
